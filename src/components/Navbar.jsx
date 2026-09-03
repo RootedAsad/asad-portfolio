@@ -15,6 +15,22 @@ const links = [
   { id: "contact", label: "Contact" },
 ];
 
+function FlipText({ children }) {
+  return (
+    <span className="group relative inline-block overflow-hidden align-middle">
+      <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
+        {children}
+      </span>
+      <span
+        aria-hidden="true"
+        className="absolute left-0 top-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"
+      >
+        {children}
+      </span>
+    </span>
+  );
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -131,7 +147,7 @@ export default function Navbar() {
                     : "text-muted hover:text-text"
                 }`}
               >
-                {link.label}
+                <FlipText>{link.label}</FlipText>
               </motion.button>
 
               {active === link.id && (
@@ -384,7 +400,7 @@ export default function Navbar() {
                         : "text-muted hover:bg-white/5 hover:text-text"
                     }`}
                   >
-                    {link.label}
+                    <FlipText>{link.label}</FlipText>
                   </motion.button>
                 </motion.li>
               ))}
