@@ -1,9 +1,17 @@
+import { Canvas, useFrame } from "@react-three/fiber";
+import {
+  Float,
+  Line,
+  OrbitControls,
+  Sphere,
+} from "@react-three/drei";
 import {
   motion,
   useMotionValue,
   useSpring,
   useTransform,
 } from "framer-motion";
+import { useMemo, useRef } from "react";
 import {
   FiUser,
   FiAward,
@@ -14,6 +22,173 @@ import {
 import SectionHeading from "../ui/SectionHeading";
 import { stats } from "../../data/experience";
 import { useCountUp } from "../../hooks/useCountUp";
+
+/* =========================
+   SUBTLE THREE.JS VISUAL
+========================= */
+
+function TechOrbit() {
+  const groupRef = useRef(null);
+
+  const nodes = useMemo(() => {
+    const count = 16;
+    const radius = 1.65;
+    const points = [];
+
+    for (let i = 0; i < count; i += 1) {
+      const phi = Math.acos(1 - (2 * (i + 0.5)) / count);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+
+      points.push([
+        radius * Math.sin(phi) * Math.cos(theta),
+        radius * Math.sin(phi) * Math.sin(theta),
+        radius * Math.cos(phi),
+      ]);
+    }
+
+    return points;
+  }, []);
+
+  useFrame((state) => {
+    if (!groupRef.current) return;
+
+    groupRef.current.rotation.y =
+      state.clock.elapsedTime * 0.12;
+
+    groupRef.current.rotation.x =
+      Math.sin(state.clock.elapsedTime * 0.25) * 0.08;
+  });
+
+  return (
+    <group ref={groupRef}>
+      {/* Central core */}
+      <Sphere args={[0.55, 32, 32]}>
+        <meshStandardMaterial
+          color="#7c3aed"
+          emissive="#5b21b6"
+          emissiveIntensity={1.5}
+          metalness={0.65}
+          roughness={0.25}
+          transparent
+          opacity={0.85}
+        />
+      </Sphere>
+
+      {/* Core wireframe */}
+      <Sphere args={[0.72, 24, 24]}>
+        <meshBasicMaterial
+          color="#8b5cf6"
+          wireframe
+          transparent
+          opacity={0.25}
+        />
+      </Sphere>
+
+      {/* Technology nodes */}
+      {nodes.map((position, index) => (
+        <Sphere
+          key={`node-${index}`}
+          args={[0.055, 12, 12]}
+          position={position}
+        >
+          <meshStandardMaterial
+            color="#22d3ee"
+            emissive="#0891b2"
+            emissiveIntensity={1.7}
+          />
+        </Sphere>
+      ))}
+
+      {/* Connections */}
+      {nodes.map((start, index) => {
+        const end = nodes[(index + 1) % nodes.length];
+
+        return (
+          <Line
+            key={`connection-${index}`}
+            points={[start, end]}
+            color="#8b5cf6"
+            transparent
+            opacity={0.22}
+            lineWidth={0.7}
+          />
+        );
+      })}
+
+      {/* Orbit rings */}
+      <mesh rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[1.95, 0.008, 8, 96]} />
+        <meshBasicMaterial
+          color="#8b5cf6"
+          transparent
+          opacity={0.22}
+        />
+      </mesh>
+
+      <mesh rotation={[0.9, 0.35, 0]}>
+        <torusGeometry args={[2.15, 0.008, 8, 96]} />
+        <meshBasicMaterial
+          color="#22d3ee"
+          transparent
+          opacity={0.18}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function About3DBackground() {
+  return (
+    <div
+      className="pointer-events-none absolute right-[-120px] top-[240px] hidden h-[430px] w-[430px] opacity-70 lg:block"
+      aria-hidden="true"
+    >
+      <Canvas
+        camera={{
+          position: [0, 0, 5],
+          fov: 45,
+        }}
+        dpr={[1, 1.25]}
+        gl={{
+          antialias: true,
+          alpha: true,
+        }}
+      >
+        <ambientLight intensity={0.5} />
+
+        <pointLight
+          position={[3, 3, 4]}
+          intensity={8}
+          distance={8}
+        />
+
+        <pointLight
+          position={[-3, -2, 2]}
+          intensity={5}
+          distance={7}
+        />
+
+        <Float
+          speed={0.8}
+          rotationIntensity={0.12}
+          floatIntensity={0.35}
+        >
+          <TechOrbit />
+        </Float>
+
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          enableRotate={false}
+        />
+      </Canvas>
+    </div>
+  );
+}
+
+/* =========================
+   STATS
+========================= */
 
 function Stat({ label, value, index }) {
   const { ref, value: count } = useCountUp(value);
@@ -56,6 +231,10 @@ function Stat({ label, value, index }) {
     </motion.div>
   );
 }
+
+/* =========================
+   JOURNEY
+========================= */
 
 const journey = [
   {
@@ -103,7 +282,8 @@ function JourneyCard({ step, index }) {
   const Icon = step.icon;
 
   const handleMouseMove = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
+    const rect =
+      event.currentTarget.getBoundingClientRect();
 
     mouseX.set(
       (event.clientX - rect.left) / rect.width - 0.5
@@ -252,17 +432,23 @@ function JourneyCards() {
   );
 }
 
+/* =========================
+   ABOUT
+========================= */
+
 export default function About() {
   return (
     <section
       id="about"
-      className="py-24 md:py-28"
+      className="relative overflow-hidden py-24 md:py-28"
       aria-labelledby="about-heading"
     >
-      <div className="section-container">
+      <About3DBackground />
+
+      <div className="section-container relative z-10">
         <SectionHeading
           eyebrow="01 · About"
-          title="A little about my journey"
+          title="About Me"
           headingId="about-heading"
         />
 
@@ -287,10 +473,10 @@ export default function About() {
               }}
               className="text-[15.5px] leading-relaxed text-muted"
             >
-              I'm a MERN Stack Developer and BS Information Technology student
-              in my 6th semester at MNS University of Agriculture, Multan. My
-              focus is building complete web applications from end to end, from
-              MongoDB databases and Express APIs to polished React interfaces.
+              I'm a MERN Stack Developer focused on building responsive and
+              full-stack web applications using React, Node.js, Express and
+              MongoDB. I enjoy turning ideas into practical digital products
+              with clean interfaces and reliable functionality.
             </motion.p>
 
             <motion.p
@@ -312,11 +498,11 @@ export default function About() {
               }}
               className="mt-4 text-[15.5px] leading-relaxed text-muted"
             >
-              Through NAVTTC's MERN Stack Development program, I gained
-              hands-on experience with REST APIs, JWT authentication, protected
-              routes, Redux Toolkit and MVC architecture. I also completed a
-              Full Stack Web Internship at Zenvyro Labs, where I continued
-              building practical development experience.
+              My development experience includes REST APIs, JWT
+              authentication, protected routes, role-based access, Redux
+              Toolkit, MongoDB and modern frontend development. I focus on
+              building applications that are responsive, maintainable and
+              useful in real-world scenarios.
             </motion.p>
 
             <motion.p
@@ -338,9 +524,10 @@ export default function About() {
               }}
               className="mt-4 text-[15.5px] leading-relaxed text-muted"
             >
-              My goal is to keep building responsive, user-friendly and
-              scalable products while growing into a full-stack developer who
-              can take features from database design to deployment.
+              I'm currently pursuing a BS in Information Technology at MNS
+              University of Agriculture, Multan, while continuing to build
+              real-world projects and strengthen my full-stack development
+              skills.
             </motion.p>
           </div>
 
