@@ -60,7 +60,7 @@ export default function Projects() {
             subtitle="A selection of projects showcasing my full-stack and frontend development work."
           />
 
-          <div className="overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-black/20">
+          <div className="overflow-hidden rounded-2xl border border-border shadow-2xl shadow-black/20">
             <iframe
               src="/projects-showcase.html"
               title="Projects showcase"

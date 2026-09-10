@@ -64,8 +64,8 @@ function TechOrbit() {
       {/* Central core */}
       <Sphere args={[0.55, 32, 32]}>
         <meshStandardMaterial
-          color="#7c3aed"
-          emissive="#5b21b6"
+          color="#F59E0B"
+          emissive="#D97706"
           emissiveIntensity={1.5}
           metalness={0.65}
           roughness={0.25}
@@ -77,7 +77,7 @@ function TechOrbit() {
       {/* Core wireframe */}
       <Sphere args={[0.72, 24, 24]}>
         <meshBasicMaterial
-          color="#8b5cf6"
+          color="#FBBF24"
           wireframe
           transparent
           opacity={0.25}
@@ -92,8 +92,8 @@ function TechOrbit() {
           position={position}
         >
           <meshStandardMaterial
-            color="#22d3ee"
-            emissive="#0891b2"
+            color="#FBBF24"
+            emissive="#D97706"
             emissiveIntensity={1.7}
           />
         </Sphere>
@@ -107,7 +107,7 @@ function TechOrbit() {
           <Line
             key={`connection-${index}`}
             points={[start, end]}
-            color="#8b5cf6"
+            color="#FBBF24"
             transparent
             opacity={0.22}
             lineWidth={0.7}
@@ -119,7 +119,7 @@ function TechOrbit() {
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1.95, 0.008, 8, 96]} />
         <meshBasicMaterial
-          color="#8b5cf6"
+          color="#F59E0B"
           transparent
           opacity={0.22}
         />
@@ -128,7 +128,7 @@ function TechOrbit() {
       <mesh rotation={[0.9, 0.35, 0]}>
         <torusGeometry args={[2.15, 0.008, 8, 96]} />
         <meshBasicMaterial
-          color="#22d3ee"
+          color="#FBBF24"
           transparent
           opacity={0.18}
         />

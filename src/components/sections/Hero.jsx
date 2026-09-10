@@ -98,7 +98,7 @@ export default function Hero() {
         className="absolute inset-0 opacity-[0.20] animated-gradient pointer-events-none"
         style={{
           background:
-            "linear-gradient(120deg, #4F8CFF, #A855F7, #22D3EE, #4F8CFF)",
+            "linear-gradient(120deg, var(--color-primary), var(--color-accent), var(--color-primary))",
         }}
       />
 
@@ -110,7 +110,7 @@ export default function Hero() {
         className="absolute -top-32 -right-32 w-[460px] h-[460px] rounded-full blur-3xl opacity-25 pointer-events-none float-shape"
         style={{
           background:
-            "radial-gradient(circle, #4F8CFF, transparent 70%)",
+            "radial-gradient(circle, var(--color-primary), transparent 70%)",
         }}
       />
 
@@ -119,7 +119,7 @@ export default function Hero() {
         className="absolute -bottom-32 -left-32 w-[420px] h-[420px] rounded-full blur-3xl opacity-20 pointer-events-none float-shape"
         style={{
           background:
-            "radial-gradient(circle, #22D3EE, transparent 70%)",
+            "radial-gradient(circle, var(--color-accent), transparent 70%)",
           animationDelay: "3s",
         }}
       />
@@ -129,7 +129,7 @@ export default function Hero() {
         className="absolute top-1/3 left-1/4 w-64 h-64 rounded-full blur-3xl opacity-[0.12] pointer-events-none float-shape"
         style={{
           background:
-            "radial-gradient(circle, #A855F7, transparent 70%)",
+            "radial-gradient(circle, var(--color-primary), transparent 70%)",
           animationDelay: "1.5s",
         }}
       />
@@ -188,14 +188,15 @@ export default function Hero() {
               whileHover={{
                 y: -2,
                 boxShadow:
-                  "0 12px 30px -8px rgba(79,140,255,0.45)",
+                  "0 12px 30px -8px rgba(245,158,11,0.45)",
               }}
               whileTap={{ y: 0 }}
               transition={{ duration: 0.2 }}
-              className="px-7 py-3.5 rounded-xl font-semibold text-white text-sm flex items-center gap-2"
+              className="px-7 py-3.5 rounded-xl font-semibold text-sm flex items-center gap-2"
               style={{
                 background:
-                  "linear-gradient(135deg,#4F8CFF,#22D3EE)",
+                  "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
+                color: "var(--color-button-text)",
               }}
             >
               View Projects
@@ -250,7 +251,7 @@ export default function Hero() {
             className="absolute -inset-x-6 bottom-2 h-16 rounded-full blur-2xl opacity-40 pointer-events-none"
             style={{
               background:
-                "radial-gradient(ellipse, #4F8CFF, transparent 70%)",
+                "radial-gradient(ellipse, var(--color-primary), transparent 70%)",
             }}
           />
 
@@ -260,7 +261,7 @@ export default function Hero() {
             className="absolute w-64 h-64 sm:w-80 sm:h-80 blob-shape opacity-90 blur-lg pointer-events-none"
             style={{
               background:
-                "linear-gradient(135deg,#4F8CFF,#A855F7,#22D3EE)",
+                "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
             }}
           />
 
@@ -270,7 +271,7 @@ export default function Hero() {
             className="absolute w-64 h-64 sm:w-80 sm:h-80 blob-shape pointer-events-none"
             style={{
               boxShadow:
-                "0 0 0 3px rgba(79,140,255,0.55), 0 0 40px 6px rgba(168,85,247,0.35)",
+                "0 0 0 3px rgba(245,158,11,0.55), 0 0 40px 6px rgba(251,191,36,0.35)",
             }}
           />
 
@@ -281,28 +282,28 @@ export default function Hero() {
               radius: 165,
               duration: "9s",
               delay: "0s",
-              color: "#4F8CFF",
+              color: "var(--color-primary)",
             },
             {
               size: 15,
               radius: 185,
               duration: "13s",
               delay: "-4s",
-              color: "#22D3EE",
+              color: "var(--color-accent)",
             },
             {
               size: 12,
               radius: 150,
               duration: "7s",
               delay: "-2s",
-              color: "#A855F7",
+              color: "var(--color-primary)",
             },
             {
               size: 10,
               radius: 195,
               duration: "11s",
               delay: "-6s",
-              color: "#4F8CFF",
+              color: "var(--color-accent)",
             },
           ].map((p, i) => (
             <div
@@ -336,7 +337,7 @@ export default function Hero() {
               rotateY,
               transformStyle: "preserve-3d",
             }}
-            className="relative w-64 h-64 sm:w-80 sm:h-80 blob-shape overflow-hidden surface-card p-2 shadow-[0_30px_60px_-15px_rgba(79,140,255,0.45)] backdrop-blur-xl"
+            className="relative w-64 h-64 sm:w-80 sm:h-80 blob-shape overflow-hidden surface-card p-2 shadow-[0_30px_60px_-15px_rgba(245,158,11,0.45)] backdrop-blur-xl"
           >
             <img
               src="/images/profile.png"

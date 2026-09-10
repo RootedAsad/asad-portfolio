@@ -114,8 +114,8 @@ const SkillCard = memo(function SkillCard({
               x2="1"
               y2="1"
             >
-              <stop offset="0%" stopColor="#4F8CFF" />
-              <stop offset="100%" stopColor="#22D3EE" />
+              <stop offset="0%" stopColor="var(--color-primary)" />
+              <stop offset="100%" stopColor="var(--color-accent)" />
             </linearGradient>
           </defs>
         </svg>

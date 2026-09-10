@@ -21,6 +21,7 @@ function FlipText({ children }) {
       <span className="block transition-transform duration-300 ease-out group-hover:-translate-y-full">
         {children}
       </span>
+
       <span
         aria-hidden="true"
         className="absolute left-0 top-0 block translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"
@@ -101,10 +102,10 @@ export default function Navbar() {
         {/* Logo */}
         <motion.button
           onClick={() => scrollTo("home")}
-          className="font-display text-lg font-bold tracking-tight"
+          className="flex h-12 w-[170px] shrink-0 items-center justify-start overflow-visible"
           aria-label="Go to top"
           whileHover={{
-            scale: 1.06,
+            scale: 1.03,
             y: -1,
           }}
           whileTap={{
@@ -116,9 +117,11 @@ export default function Navbar() {
             damping: 20,
           }}
         >
-          <span className="text-primary">&lt;</span>
-          Asad
-          <span className="text-secondary">/&gt;</span>
+          <img
+            src="/images/nlogo.png"
+            alt="RootedAsad"
+            className="block h-11 w-auto max-w-none origin-left scale-[2] object-contain"
+          />
         </motion.button>
 
         {/* Desktop Navigation */}
@@ -185,7 +188,7 @@ export default function Navbar() {
               stiffness: 350,
               damping: 18,
             }}
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 transition-colors hover:border-primary/60"
+            className="grid h-9 w-9 place-items-center rounded-full border border-border transition-colors hover:border-primary/60"
           >
             <AnimatePresence mode="wait">
               {theme === "dark" ? (
@@ -246,7 +249,8 @@ export default function Navbar() {
             whileHover={{
               y: -2,
               scale: 1.03,
-              boxShadow: "0 12px 30px rgba(34, 211, 238, 0.25)",
+              boxShadow:
+                "0 12px 30px color-mix(in srgb, var(--color-primary) 25%, transparent)",
             }}
             whileTap={{
               scale: 0.96,
@@ -256,10 +260,11 @@ export default function Navbar() {
               stiffness: 350,
               damping: 20,
             }}
-            className="hidden rounded-lg px-4 py-2 font-mono text-[13px] font-semibold text-white md:inline-flex"
+            className="hidden rounded-lg px-4 py-2 font-mono text-[13px] font-semibold md:inline-flex"
             style={{
               background:
-                "linear-gradient(135deg, #4F8CFF, #22D3EE)",
+                "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
+              color: "var(--color-button-text)",
             }}
           >
             Hire Me
@@ -267,7 +272,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="grid h-9 w-9 place-items-center rounded-full border border-white/10 lg:hidden"
+            className="grid h-9 w-9 place-items-center rounded-full border border-border lg:hidden"
             onClick={() => setOpen((current) => !current)}
             aria-label="Toggle menu"
             aria-expanded={open}
@@ -397,7 +402,7 @@ export default function Navbar() {
                     className={`w-full rounded-lg px-4 py-3 text-left transition-colors ${
                       active === link.id
                         ? "bg-primary/10 text-primary"
-                        : "text-muted hover:bg-white/5 hover:text-text"
+                        : "text-muted hover:bg-card hover:text-text"
                     }`}
                   >
                     <FlipText>{link.label}</FlipText>

@@ -37,31 +37,31 @@ const icons = {
 
 const accents = {
   experience: {
-    gradient: "linear-gradient(135deg, #4F8CFF 0%, #22D3EE 100%)",
-    glow: "rgba(79, 140, 255, 0.30)",
-    solid: "#4F8CFF",
-    soft: "rgba(79, 140, 255, 0.08)",
+    gradient: "linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)",
+    glow: "rgba(245, 158, 11, 0.30)",
+    solid: "#F59E0B",
+    soft: "rgba(245, 158, 11, 0.08)",
   },
 
   training: {
-    gradient: "linear-gradient(135deg, #8B5CF6 0%, #4F8CFF 100%)",
-    glow: "rgba(139, 92, 246, 0.30)",
-    solid: "#8B5CF6",
-    soft: "rgba(139, 92, 246, 0.08)",
+    gradient: "linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%)",
+    glow: "rgba(251, 191, 36, 0.30)",
+    solid: "#FBBF24",
+    soft: "rgba(251, 191, 36, 0.08)",
   },
 
   education: {
-    gradient: "linear-gradient(135deg, #22D3EE 0%, #6366F1 100%)",
-    glow: "rgba(34, 211, 238, 0.30)",
-    solid: "#22D3EE",
-    soft: "rgba(34, 211, 238, 0.08)",
+    gradient: "linear-gradient(135deg, #D97706 0%, #F59E0B 100%)",
+    glow: "rgba(217, 119, 6, 0.30)",
+    solid: "#D97706",
+    soft: "rgba(217, 119, 6, 0.08)",
   },
 
   detail: {
-    gradient: "linear-gradient(135deg, #6366F1 0%, #22D3EE 100%)",
-    glow: "rgba(99, 102, 241, 0.30)",
-    solid: "#6366F1",
-    soft: "rgba(99, 102, 241, 0.08)",
+    gradient: "linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%)",
+    glow: "rgba(252, 211, 77, 0.30)",
+    solid: "#FCD34D",
+    soft: "rgba(252, 211, 77, 0.08)",
   },
 };
 
@@ -162,13 +162,13 @@ function ExperienceHeading() {
   return (
     <div className="relative z-30 mx-auto max-w-3xl text-center">
       <div className="mb-4 flex items-center justify-center gap-3">
-        <span className="h-px w-10 bg-gradient-to-r from-transparent to-cyan-400/80" />
+        <span className="h-px w-10 bg-gradient-to-r from-transparent to-amber-400/80" />
 
-        <span className="rounded-full border border-cyan-500/25 bg-cyan-500/[0.07] px-3 py-1.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-cyan-600 dark:text-cyan-300">
+        <span className="rounded-full border border-amber-500/25 bg-amber-500/[0.07] px-3 py-1.5 font-mono text-[9px] font-semibold uppercase tracking-[0.22em] text-amber-600 dark:text-amber-300">
           04 · Experience
         </span>
 
-        <span className="h-px w-10 bg-gradient-to-l from-transparent to-cyan-400/80" />
+        <span className="h-px w-10 bg-gradient-to-l from-transparent to-amber-400/80" />
       </div>
 
       <h2
@@ -176,7 +176,7 @@ function ExperienceHeading() {
         className="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl md:text-[42px]"
       >
         Where I've{" "}
-        <span className="bg-gradient-to-r from-[#4F8CFF] via-[#22D3EE] to-[#8B5CF6] bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-[#F59E0B] via-[#FBBF24] to-[#D97706] bg-clip-text text-transparent">
           grown
         </span>
       </h2>
@@ -246,7 +246,7 @@ function ThreeExperienceBackground() {
 
     const ambientLight =
       new THREE.AmbientLight(
-        0x4f8cff,
+        0xf59e0b,
         0.45
       );
 
@@ -254,7 +254,7 @@ function ThreeExperienceBackground() {
 
     const pointLight =
       new THREE.PointLight(
-        0x22d3ee,
+        0xfbbf24,
         0.65,
         35
       );
@@ -306,7 +306,7 @@ function ThreeExperienceBackground() {
 
     const particleMaterial =
       new THREE.PointsMaterial({
-        color: 0x4f8cff,
+        color: 0xf59e0b,
         size: 0.04,
         transparent: true,
         opacity: 0.16,
@@ -324,9 +324,9 @@ function ThreeExperienceBackground() {
       new THREE.Group();
 
     const ringColors = [
-      0x4f8cff,
-      0x22d3ee,
-      0x8b5cf6,
+      0xf59e0b,
+      0xfbbf24,
+      0xd97706,
     ];
 
     const ringCount =
@@ -837,7 +837,7 @@ function ExperienceCard({
       whileHover={{
         y: -5,
       }}
-      className="relative z-30 block overflow-hidden rounded-[22px] border border-zinc-200 bg-white/95 p-5 shadow-[0_16px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/[0.10] dark:bg-[#0c111b]/95 dark:shadow-[0_20px_50px_rgba(0,0,0,0.28)] sm:p-6"
+      className="relative z-30 block overflow-hidden rounded-[22px] border border-zinc-200 bg-white/95 p-5 shadow-[0_16px_40px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/[0.10] dark:bg-[#232326]/95 dark:shadow-[0_20px_50px_rgba(0,0,0,0.28)] sm:p-6"
     >
       {/* Hover glow */}
 
@@ -1028,7 +1028,7 @@ function ExperienceCard({
             ].map((tag) => (
               <span
                 key={tag}
-                className="flex items-center gap-1.5 rounded-lg border border-violet-500/15 bg-violet-500/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400"
+                className="flex items-center gap-1.5 rounded-lg border border-amber-400/15 bg-amber-400/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400"
               >
                 <FiCheckCircle
                   size={9}
@@ -1051,7 +1051,7 @@ function ExperienceCard({
             ].map((tag) => (
               <span
                 key={tag}
-                className="flex items-center gap-1.5 rounded-lg border border-blue-500/15 bg-blue-500/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400"
+                className="flex items-center gap-1.5 rounded-lg border border-amber-500/15 bg-amber-500/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400"
               >
                 <FiCheckCircle
                   size={9}
@@ -1073,7 +1073,7 @@ function ExperienceCard({
             ].map((tag) => (
               <span
                 key={tag}
-                className="flex items-center gap-1.5 rounded-lg border border-indigo-500/15 bg-indigo-500/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400"
+                className="flex items-center gap-1.5 rounded-lg border border-amber-600/15 bg-amber-600/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400"
               >
                 <FiCheckCircle
                   size={9}
@@ -1089,11 +1089,11 @@ function ExperienceCard({
           {type ===
             "education" && (
             <>
-              <span className="rounded-lg border border-cyan-500/15 bg-cyan-500/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400">
+              <span className="rounded-lg border border-amber-300/15 bg-amber-300/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400">
                 7th Semester
               </span>
 
-              <span className="rounded-lg border border-cyan-500/15 bg-cyan-500/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400">
+              <span className="rounded-lg border border-amber-300/15 bg-amber-300/[0.05] px-2.5 py-1.5 font-mono text-[9px] text-zinc-600 dark:text-zinc-400">
                 Expected 2027
               </span>
             </>
@@ -1247,7 +1247,7 @@ export default function Experience() {
 
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute bottom-0 left-5 top-0 z-10 w-px bg-gradient-to-b from-cyan-400/45 via-blue-500/20 to-transparent lg:left-1/2 lg:-translate-x-1/2"
+            className="pointer-events-none absolute bottom-0 left-5 top-0 z-10 w-px bg-gradient-to-b from-amber-400/45 via-amber-500/20 to-transparent lg:left-1/2 lg:-translate-x-1/2"
           />
 
           {/* IMPORTANT:

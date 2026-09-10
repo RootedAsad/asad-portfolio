@@ -501,16 +501,21 @@ export default function Contact() {
               whileTap={{
                 scale: status === "loading" ? 1 : 0.98,
               }}
-              className="mt-2 flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold text-white disabled:opacity-60"
+              className="mt-2 flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold disabled:opacity-60"
               style={{
                 background:
-                  "linear-gradient(135deg,#4F8CFF,#22D3EE)",
+                  "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
+                color: "var(--color-button-text)",
               }}
             >
               {status === "loading" ? (
                 <>
                   <span
-                    className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"
+                    className="h-4 w-4 animate-spin rounded-full border-2"
+                    style={{
+                      borderColor: "rgba(24,24,27,0.3)",
+                      borderTopColor: "var(--color-button-text)",
+                    }}
                     aria-hidden="true"
                   />
                   Sending...

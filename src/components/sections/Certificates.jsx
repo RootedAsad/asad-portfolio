@@ -176,8 +176,8 @@ export default function Certificates() {
                     )}
 
                     {/* Hover Overlay */}
-                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#08101d]/0 opacity-0 transition-all duration-300 group-hover:bg-[#08101d]/60 group-hover:opacity-100">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-mono text-xs font-medium text-[#101827] shadow-xl">
+                    <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#18181B]/0 opacity-0 transition-all duration-300 group-hover:bg-[#18181B]/60 group-hover:opacity-100">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-mono text-xs font-medium text-[#18181B] shadow-xl">
                         <FiExternalLink size={14} />
                         {credential
                           ? "View Credential"

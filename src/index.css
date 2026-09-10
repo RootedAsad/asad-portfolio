@@ -5,15 +5,17 @@
   --font-body: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  /* Premium modern dark theme */
-  --color-bg: #0B1120;
-  --color-surface: #111827;
-  --color-card: #1E293B;
-  --color-primary: #4F8CFF;
-  --color-secondary: #22D3EE;
-  --color-accent: #A855F7;
-  --color-text: #F8FAFC;
-  --color-muted: #94A3B8;
+  /* RootedAsad — Warm Developer theme (Amber) */
+  --color-bg: #18181B;
+  --color-surface: #232326;
+  --color-card: #2D2D31;
+  --color-primary: #F59E0B;
+  --color-secondary: #FBBF24;
+  --color-accent: #FBBF24;
+  --color-text: #FAFAF9;
+  --color-muted: #A1A1AA;
+  --color-border: #3A3A3F;
+  --color-button-text: #18181B;
 }
 
 * {
@@ -34,40 +36,40 @@ body {
 }
 
 html.light body {
-  background-color: #F9FAFB;
-  color: #0F172A;
+  background-color: #FAF8F3;
+  color: #211E18;
 }
 
 html.light .surface-card {
   background: #FFFFFF;
-  border-color: rgba(15, 23, 42, 0.08);
+  border-color: rgba(33, 30, 24, 0.1);
 }
 
 html.light .surface-nav {
   background: rgba(255, 255, 255, 0.78);
-  border-color: rgba(15, 23, 42, 0.08);
+  border-color: rgba(33, 30, 24, 0.1);
 }
 
 html.light .text-muted {
-  color: #64748B;
+  color: #746E63;
 }
 
 html.light .text-text {
-  color: #0F172A;
+  color: #211E18;
 }
 
 html.light .border-white\/10,
 html.light .border-white\/\[0\.08\] {
-  border-color: rgba(15, 23, 42, 0.08);
+  border-color: rgba(33, 30, 24, 0.1);
 }
 
 html.light .bg-white\/5 {
-  background-color: rgba(15, 23, 42, 0.04);
+  background-color: rgba(33, 30, 24, 0.04);
 }
 
 ::selection {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-button-text);
 }
 
 ::-webkit-scrollbar {
@@ -109,7 +111,7 @@ button:disabled,
 }
 
 .surface-nav {
-  background: rgba(10, 10, 10, 0.72);
+  background: rgba(24, 24, 27, 0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -181,6 +183,6 @@ button:disabled,
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-secondary);
+  outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }

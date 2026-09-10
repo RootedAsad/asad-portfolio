@@ -7,7 +7,9 @@ export default function BackToTop() {
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 500);
+
     window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -20,10 +22,21 @@ export default function BackToTop() {
           exit={{ opacity: 0, y: 20, scale: 0.8 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            })
+          }
           aria-label="Back to top"
-          className="fixed bottom-7 right-7 z-40 w-12 h-12 rounded-full grid place-items-center text-white shadow-lg shadow-primary/30"
-          style={{ background: "linear-gradient(135deg, #4F8CFF, #22D3EE)" }}
+          className="fixed bottom-7 right-7 z-40 w-12 h-12 rounded-full grid place-items-center shadow-lg"
+          style={{
+            background:
+              "linear-gradient(135deg, var(--color-primary), var(--color-accent))",
+            color: "var(--color-button-text)",
+            boxShadow:
+              "0 10px 25px color-mix(in srgb, var(--color-primary) 30%, transparent)",
+          }}
         >
           <FiArrowUp size={20} />
         </motion.button>

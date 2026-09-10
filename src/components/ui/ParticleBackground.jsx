@@ -1,5 +1,14 @@
 import { useEffect, useRef } from "react";
 
+const DARK_COLORS = ["#F59E0B", "#FBBF24", "#D97706"];
+const LIGHT_COLORS = ["#D97706", "#B45309", "#92400E"];
+const DARK_LINE_COLOR = "#F59E0B";
+const LIGHT_LINE_COLOR = "#D97706";
+
+const isLightMode = () =>
+  typeof document !== "undefined" &&
+  document.documentElement.classList.contains("light");
+
 export default function ParticleBackground() {
   const canvasRef = useRef(null);
 
@@ -9,6 +18,7 @@ export default function ParticleBackground() {
     let animationId;
     let particles = [];
     let width, height;
+    let lineColor = isLightMode() ? LIGHT_LINE_COLOR : DARK_LINE_COLOR;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -17,9 +27,9 @@ export default function ParticleBackground() {
       height = canvas.height = canvas.offsetHeight * devicePixelRatio;
     };
 
-    const colors = ["#4F8CFF", "#22D3EE", "#A855F7"];
-
     const init = () => {
+      const colors = isLightMode() ? LIGHT_COLORS : DARK_COLORS;
+      lineColor = isLightMode() ? LIGHT_LINE_COLOR : DARK_LINE_COLOR;
       const count = Math.min(70, Math.floor((canvas.offsetWidth * canvas.offsetHeight) / 18000));
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
@@ -53,7 +63,7 @@ export default function ParticleBackground() {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = "#4F8CFF";
+            ctx.strokeStyle = lineColor;
             ctx.globalAlpha = 0.08 * (1 - dist / (120 * devicePixelRatio));
             ctx.stroke();
           }
@@ -82,9 +92,29 @@ export default function ParticleBackground() {
     };
     window.addEventListener("resize", onResize);
 
+    // Re-color particles instantly when the person toggles light/dark mode
+    const themeObserver = new MutationObserver(() => {
+      init();
+      if (prefersReducedMotion) {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach((p) => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = 0.5;
+          ctx.fill();
+        });
+      }
+    });
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
     return () => {
       cancelAnimationFrame(animationId);
       window.removeEventListener("resize", onResize);
+      themeObserver.disconnect();
     };
   }, []);
 
