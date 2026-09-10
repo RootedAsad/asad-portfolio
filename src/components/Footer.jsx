@@ -8,42 +8,52 @@ const quickLinks = [
 ];
 
 export default function Footer() {
-  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const scrollTo = (id) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <footer className="border-t border-white/10 py-16 mt-10">
-      <div className="section-container flex flex-col md:flex-row justify-between gap-10">
+    <footer className="mt-10 border-t border-white/10 py-16">
+      <div className="section-container flex flex-col justify-between gap-10 md:flex-row">
         <div>
-          <button onClick={() => scrollTo("home")} className="font-display font-bold text-lg">
-            <span className="text-primary">&lt;</span>Asad<span className="text-secondary">/&gt;</span>
+          <button
+            onClick={() => scrollTo("home")}
+            className="font-display text-lg font-bold"
+          >
+            <span className="text-primary">&lt;</span>
+            Asad
+            <span className="text-secondary">/&gt;</span>
           </button>
-          <p className="text-muted text-sm mt-3 max-w-xs leading-relaxed">
-            MERN Stack Developer building responsive, user-friendly web applications
-            from Multan, Pakistan.
+
+          <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted">
+            MERN Stack Developer building responsive, user-friendly web
+            applications from Multan, Pakistan.
           </p>
-          <div className="flex gap-3 mt-6">
+
+          <div className="mt-6 flex gap-3">
             <a
               href="https://github.com/MuhammadAsad86"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-10 h-10 rounded-full grid place-items-center border border-white/10 text-muted hover:border-primary/60 hover:text-primary hover:-translate-y-0.5 transition-all"
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-muted transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
             >
               <FiGithub size={16} />
             </a>
+
             <a
               href="https://linkedin.com/in/muhammadasad86"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-10 h-10 rounded-full grid place-items-center border border-white/10 text-muted hover:border-primary/60 hover:text-primary hover:-translate-y-0.5 transition-all"
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-muted transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
             >
               <FiLinkedin size={16} />
             </a>
+
             <a
               href="mailto:rootedasad@gmail.com"
               aria-label="Email"
-              className="w-10 h-10 rounded-full grid place-items-center border border-white/10 text-muted hover:border-primary/60 hover:text-primary hover:-translate-y-0.5 transition-all"
+              className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-muted transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary"
             >
               <FiMail size={16} />
             </a>
@@ -51,11 +61,17 @@ export default function Footer() {
         </div>
 
         <nav aria-label="Footer quick links">
-          <h4 className="font-mono text-xs text-muted mb-4">Quick Links</h4>
+          <h4 className="mb-4 font-mono text-xs text-muted">
+            Quick Links
+          </h4>
+
           <ul className="flex flex-col gap-2.5">
             {quickLinks.map((l) => (
               <li key={l.id}>
-                <button onClick={() => scrollTo(l.id)} className="text-sm text-muted hover:text-text transition-colors">
+                <button
+                  onClick={() => scrollTo(l.id)}
+                  className="text-sm text-muted transition-colors hover:text-text"
+                >
                   {l.label}
                 </button>
               </li>
@@ -64,17 +80,24 @@ export default function Footer() {
         </nav>
 
         <div>
-          <h4 className="font-mono text-xs text-muted mb-4">Contact</h4>
+          <h4 className="mb-4 font-mono text-xs text-muted">Contact</h4>
+
           <p className="text-sm text-muted">rootedasad@gmail.com</p>
-          <p className="text-sm text-muted mt-1.5">+92 312 0611513</p>
-          <p className="text-sm text-muted mt-1.5">Multan, Pakistan</p>
+          <p className="mt-1.5 text-sm text-muted">+92 312 0611513</p>
+          <p className="mt-1.5 text-sm text-muted">Multan, Pakistan</p>
         </div>
       </div>
+<div className="section-container relative top-8 mt-12 font-mono text-xs text-muted">
+  <div className="border-t border-white/10 pt-6 flex flex-col justify-between gap-3 sm:flex-row">
+    <span>
+      © {new Date().getFullYear()} Muhammad Asad. All rights reserved.
+    </span>
 
-      <div className="section-container mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-muted font-mono">
-        <span>© {new Date().getFullYear()} Muhammad Asad. All rights reserved.</span>
-        <span>Built with React, Tailwind CSS &amp; Framer Motion</span>
-      </div>
+    <span>
+      Built with React, Tailwind CSS &amp; Framer Motion
+    </span>
+  </div>
+</div>
     </footer>
   );
 }

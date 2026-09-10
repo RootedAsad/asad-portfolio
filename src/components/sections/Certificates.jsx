@@ -42,8 +42,18 @@ export default function Certificates() {
       return "/images/intro-to-ai.pdf";
     }
 
-    if (cert.title === "NAVTTC MERN Stack Development Training") {
+    if (cert.title === "JavaScript Fullstack (e.g. MEAN/MERN)") {
       return "https://www.credly.com/badges/b3bb8039-fb18-49f9-a6c0-4164bd11f38a/public_url";
+    }
+
+    if (
+      cert.title === "Information Technology Specialist - JavaScript"
+    ) {
+      return "/images/ITS-Badges_JavaScript.png";
+    }
+
+    if (cert.title === "NAVTTC MERN Stack Development Training") {
+      return "/images/NAVTTC-JavaScript-Fullstack.png";
     }
 
     return null;
@@ -55,7 +65,17 @@ export default function Certificates() {
     }
 
     if (cert.title === "NAVTTC MERN Stack Development Training") {
-      return "/ITS-Badges_JavaScript.png";
+      return "/images/NAVTTC-JavaScript-Fullstack.png";
+    }
+
+    if (cert.title === "JavaScript Fullstack (e.g. MEAN/MERN)") {
+      return "/IT-Badges_JavaScript.png";
+    }
+
+    if (
+      cert.title === "Information Technology Specialist - JavaScript"
+    ) {
+      return "/images/ITS-Badges_JavaScript.png";
     }
 
     return null;
@@ -63,6 +83,10 @@ export default function Certificates() {
 
   const isPdfPreview = (cert) => {
     return cert.title === "Introduction to AI";
+  };
+
+  const isCredential = (cert) => {
+    return cert.title === "JavaScript Fullstack (e.g. MEAN/MERN)";
   };
 
   return (
@@ -96,6 +120,7 @@ export default function Certificates() {
             const certificateLink = getCertificateLink(cert);
             const certificateImage = getCertificateImage(cert);
             const pdfPreview = isPdfPreview(cert);
+            const credential = isCredential(cert);
 
             return (
               <motion.article
@@ -154,7 +179,9 @@ export default function Certificates() {
                     <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#08101d]/0 opacity-0 transition-all duration-300 group-hover:bg-[#08101d]/60 group-hover:opacity-100">
                       <span className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-mono text-xs font-medium text-[#101827] shadow-xl">
                         <FiExternalLink size={14} />
-                        View Certificate
+                        {credential
+                          ? "View Credential"
+                          : "View Certificate"}
                       </span>
                     </div>
                   </a>
@@ -185,11 +212,9 @@ export default function Certificates() {
                       className="mt-5 inline-flex w-fit items-center gap-2 font-mono text-xs text-primary transition-colors hover:text-secondary"
                     >
                       <FiExternalLink size={13} />
-
-                      {cert.title === "Full Stack Web Internship" ||
-                      cert.title === "Introduction to AI"
-                        ? "View Certificate"
-                        : "Verify Credential"}
+                      {credential
+                        ? "View Credential"
+                        : "View Certificate"}
                     </a>
                   )}
                 </div>
