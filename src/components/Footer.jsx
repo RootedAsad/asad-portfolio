@@ -50,7 +50,7 @@ export default function Footer() {
           <div className="mt-6 flex gap-3">
             {/* GitHub */}
             <a
-              href="https://github.com/MuhammadAsad86"
+              href="https://github.com/RootedAsad"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -78,7 +78,7 @@ export default function Footer() {
 
             {/* LinkedIn */}
             <a
-              href="https://linkedin.com/in/muhammadasad86"
+              href="https://linkedin.com/in/RootedAsad"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

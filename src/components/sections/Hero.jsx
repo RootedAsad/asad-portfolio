@@ -25,12 +25,12 @@ const roles = [
 const socials = [
   {
     icon: FiGithub,
-    href: "https://github.com/MuhammadAsad86",
+    href: "https://github.com/RootedAsad",
     label: "GitHub",
   },
   {
     icon: FiLinkedin,
-    href: "https://linkedin.com/in/muhammadasad86",
+    href: "https://linkedin.com/in/RootedAsad",
     label: "LinkedIn",
   },
   {

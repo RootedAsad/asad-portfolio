@@ -9,7 +9,7 @@ import {
 
 import { useGithubProfile } from "../../hooks/useGithubProfile";
 
-const USERNAME = "MuhammadAsad86";
+const USERNAME = "RootedAsad";
 
 const containerVariants = {
   hidden: {},

@@ -16,7 +16,7 @@ export const projects = [
     tech: ["React", "Node.js", "Express", "MongoDB"],
     image: "/images/nexaflow.png",
     github:
-      "https://github.com/MuhammadAsad86/Project-Management-Team-Collaboration-Platform",
+      "https://github.com/RootedAsad/Project-Management-Team-Collaboration-Platform",
     live: "https://project-beta-henna-46.vercel.app",
 
     caseStudy: {
@@ -61,7 +61,7 @@ export const projects = [
     tech: ["React", "Node.js", "Express", "MongoDB"],
     image: "/images/ra-collection.png",
     github:
-      "https://github.com/MuhammadAsad86/ecommerce-web-application-",
+      "https://github.com/RootedAsad/ecommerce-web-application-",
     live:
       "https://ecommerce-web-application-dusky.vercel.app/",
 
@@ -112,7 +112,7 @@ export const projects = [
       "JWT",
     ],
     image: "/images/mern-blog.png",
-    github: "https://github.com/MuhammadAsad86/mern-blog",
+    github: "https://github.com/RootedAsad/mern-blog",
     live: "https://mern-blog-theta-lilac.vercel.app/",
 
     caseStudy: {
@@ -162,7 +162,7 @@ export const projects = [
       "JWT",
     ],
     image: "/images/shelf-life.png",
-    github: "https://github.com/MuhammadAsad86/shelf-life",
+    github: "https://github.com/RootedAsad/shelf-life",
     live: "https://shelf-life-eta.vercel.app/",
 
     caseStudy: {
@@ -213,7 +213,7 @@ export const projects = [
       "MapLibre",
     ],
     image: "/images/geofind.png",
-    github: "https://github.com/MuhammadAsad86/GeoFind",
+    github: "https://github.com/RootedAsad/GeoFind",
     live: "https://geo-find-one.vercel.app/",
 
     caseStudy: {

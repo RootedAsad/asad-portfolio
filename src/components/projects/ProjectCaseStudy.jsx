@@ -22,7 +22,7 @@ const PROJECTS = {
     role: "Full Stack",
     live: "https://project-beta-henna-46.vercel.app",
     repo:
-      "https://github.com/MuhammadAsad86/Project-Management-Team-Collaboration-Platform",
+      "https://github.com/RootedAsad/Project-Management-Team-Collaboration-Platform",
     problem:
       "Development teams need a centralized platform to manage projects, tasks, responsibilities, and access permissions without relying on disconnected tools.",
     solution:
@@ -49,7 +49,7 @@ const PROJECTS = {
     year: "2026",
     role: "Full Stack",
     live: "https://ecommerce-web-application-dusky.vercel.app/",
-    repo: "https://github.com/MuhammadAsad86/ecommerce-web-application-",
+    repo: "https://github.com/RootedAsad/ecommerce-web-application-",
     problem:
       "Online shoppers need a simple and responsive way to browse products, explore collections, and manage shopping activity from a single platform.",
     solution:
@@ -76,7 +76,7 @@ const PROJECTS = {
     year: "2026",
     role: "Full Stack",
     live: "https://mern-blog-theta-lilac.vercel.app/",
-    repo: "https://github.com/MuhammadAsad86/mern-blog",
+    repo: "https://github.com/RootedAsad/mern-blog",
     problem:
       "A modern blogging application requires secure authentication, structured content management, and predictable state handling for an interactive user experience.",
     solution:
@@ -103,7 +103,7 @@ const PROJECTS = {
     year: "2026",
     role: "Full Stack",
     live: "https://shelf-life-eta.vercel.app/",
-    repo: "https://github.com/MuhammadAsad86/shelf-life",
+    repo: "https://github.com/RootedAsad/shelf-life",
     problem:
       "Readers need a simple place to organize their books, track reading progress, and manage their personal library without depending on scattered notes or apps.",
     solution:
@@ -130,7 +130,7 @@ const PROJECTS = {
     year: "2026",
     role: "Full Stack",
     live: "https://geo-find-one.vercel.app/",
-    repo: "https://github.com/MuhammadAsad86/GeoFind",
+    repo: "https://github.com/RootedAsad/GeoFind",
     problem:
       "Location-based applications need efficient geographic search, ranking, and caching to return useful nearby results without unnecessary database overhead.",
     solution:
