@@ -1,4 +1,12 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/portfolio/",
+      "destination": "/portfolio",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/portfolio/googleaa57ed852dc59d17.html",
