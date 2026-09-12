@@ -7,6 +7,7 @@ import BackToTop from "./components/ui/BackToTop";
 import LoadingScreen from "./components/ui/LoadingScreen";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
+import ProjectCaseStudy from "./components/projects/ProjectCaseStudy";
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -24,13 +25,42 @@ export default function App() {
       >
         Skip to main content
       </a>
+
       <LoadingScreen show={loading} />
       <ScrollProgress />
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
+
+        <Route
+          path="/projects/nexaflow"
+          element={<ProjectCaseStudy projectId="nexaflow" />}
+        />
+
+        <Route
+          path="/projects/ra-collection"
+          element={<ProjectCaseStudy projectId="ra-collection" />}
+        />
+
+        <Route
+          path="/projects/mern-blog"
+          element={<ProjectCaseStudy projectId="mern-blog" />}
+        />
+
+        <Route
+          path="/projects/shelf-life"
+          element={<ProjectCaseStudy projectId="shelf-life" />}
+        />
+
+        <Route
+          path="/projects/geofind"
+          element={<ProjectCaseStudy projectId="geofind" />}
+        />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
+
       <Footer />
       <BackToTop />
     </>
