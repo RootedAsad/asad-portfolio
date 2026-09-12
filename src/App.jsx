@@ -14,6 +14,7 @@ export default function App() {
 
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 1200);
+
     return () => clearTimeout(t);
   }, []);
 
@@ -21,7 +22,7 @@ export default function App() {
     <>
       <a
         href="#main-content"
-        className="fixed left-4 top-4 z-[100] -translate-y-24 focus:translate-y-0 transition-transform bg-primary text-white font-mono text-xs px-4 py-2.5 rounded-lg"
+        className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-lg bg-primary px-4 py-2.5 font-mono text-xs text-white transition-transform focus:translate-y-0"
       >
         Skip to main content
       </a>
@@ -31,8 +32,10 @@ export default function App() {
       <Navbar />
 
       <Routes>
+        {/* Homepage */}
         <Route path="/" element={<Home />} />
 
+        {/* Project Case Studies */}
         <Route
           path="/projects/nexaflow"
           element={<ProjectCaseStudy projectId="nexaflow" />}
@@ -58,6 +61,7 @@ export default function App() {
           element={<ProjectCaseStudy projectId="geofind" />}
         />
 
+        {/* 404 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
 

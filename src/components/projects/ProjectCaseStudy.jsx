@@ -164,7 +164,7 @@ const ProjectCaseStudy = ({ projectId: projectIdProp }) => {
 
   if (!project) return null;
 
-  const canonicalUrl = `https://muhammadasad.dev/projects/${projectId}`;
+  const canonicalUrl = `https://asad-portfolio-tau.vercel.app/portfolio/projects/${projectId}`;
 
   return (
     <>
@@ -179,10 +179,12 @@ const ProjectCaseStudy = ({ projectId: projectIdProp }) => {
           property="og:title"
           content={`${project.title} — RootedAsad Case Study`}
         />
+
         <meta
           property="og:description"
           content={project.description}
         />
+
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
       </Helmet>
