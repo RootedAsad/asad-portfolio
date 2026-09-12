@@ -1,8 +1,16 @@
 {
   "rewrites": [
     {
+      "source": "/portfolio/googleaa57ed852dc59d17.html",
+      "destination": "/googleaa57ed852dc59d17.html"
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/index.html"
+    },
+    {
       "source": "/portfolio/:path*",
-      "destination": "/portfolio"
+      "destination": "/index.html"
     }
   ]
 }
