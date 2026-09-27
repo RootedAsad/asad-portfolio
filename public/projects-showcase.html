@@ -51,7 +51,7 @@ button{font:inherit}
   width:100%;
   height:100%;
   display:block;
-  touch-action:none;
+  touch-action:pan-y;
   z-index:2;
 }
 
@@ -681,19 +681,8 @@ function paintProjectFront(cfg,onReady){
   if(!cfg.img)return c;
 
   const img=new Image();
-  let settled=false;
-  let timer=null;
-  const fallback=()=>{
-    if(settled)return;
-    settled=true;
-    if(timer)clearTimeout(timer);
-    finish();
-  };
-  timer=setTimeout(fallback,1600);
+  img.decoding='async';
   img.onload=()=>{
-    if(settled)return;
-    settled=true;
-    if(timer)clearTimeout(timer);
     try{
       const bx=52,by=52,bw=w-104,bh=560,ir=24;
       x.save();rr(x,bx,by,bw,bh,ir);x.clip();
@@ -710,9 +699,9 @@ function paintProjectFront(cfg,onReady){
       console.warn('Project image could not be drawn; using text cover:',cfg.title,err);
       drawBase();drawText();
     }
-    safeReady();
+    if(onReady)onReady();
   };
-  img.onerror=fallback;
+  img.onerror=()=>{};
   try{img.src=new URL(cfg.img,document.baseURI).href}catch{img.src=cfg.img}
   return c;
 }
@@ -755,7 +744,7 @@ PROJECTS.forEach(buildBook);
 function ensureFront(book){
   if(!book||book.frontLoaded)return;
   book.frontLoaded=true;
-  loadCover(book.frontMaterial,book.cfg.img,()=>paintProjectFront(book.cfg),false);
+  loadCover(book.frontMaterial,book.cfg.img,(done)=>paintProjectFront(book.cfg,done),false);
 }
 books.slice(0,VISIBLE).forEach(ensureFront);
 const bookByHit=m=>books.find(b=>b.hit===m);
@@ -779,7 +768,7 @@ function open(book){if(state.mode!=='hero'||!book)return;state.mode='opening';st
 function close(){if(state.mode!=='detail')return;state.mode='closing';root.classList.remove('detail-open');leaves.deactivate();const b=state.selected;if(b){resetBookToFront(b);const slotIndex=currentWindow.indexOf(b.index);if(slotIndex>=0){setTargets(b,SLOTS.hero[slotIndex]);b.root.visible=true}else{b.root.visible=true;setTargets(b,SLOTS.hero[1]||SLOTS.hero[0])}b.springs.fade.t=1;b.springs.fade.v=1}books.forEach(bk=>{bk.springs.fade.t=1;bk.springs.fade.v=1});setTimeout(()=>{root.classList.remove('transit');applyMode();camTo('hero')},120);setTimeout(()=>{if(state.mode==='closing'){books.forEach(bk=>{bk.root.visible=currentWindow.includes(bk.index);resetBookToFront(bk);bk.springs.fade.t=1;bk.springs.fade.v=1});state.mode='hero';state.selected=null;panel.classList.remove('visible');closeBtn.classList.remove('visible');topnav.classList.remove('hidden');if(N>VISIBLE){prevBtn.classList.remove('hidden');nextBtn.classList.remove('hidden')}}},650)}
 pCaseStudy.onclick=()=>{const projectId=state.selected?.cfg?.id;if(!projectId)return;window.parent.postMessage({type:'open-project-case-study',projectId},window.location.origin)};prevBtn.onclick=()=>shiftCarousel(-1);nextBtn.onclick=()=>shiftCarousel(1);closeBtn.onclick=close;if(N<=VISIBLE){prevBtn.classList.add('hidden');nextBtn.classList.add('hidden')}
 const ptr={ndcX:0,ndcY:0,cx:0,cy:0,lastX:0,lastY:0,down:false,downX:0,downY:0,moved:0,t0:0,type:'mouse',seen:false,id:null};const isTouch=()=>ptr.type==='touch'||ptr.type==='pen';let dragBook=null,rayBook=null;const orbit={drag:false,dxAcc:0,dyAcc:0};const ray=new THREE.Raycaster(),tmpV=new THREE.Vector3();
-function localXY(e){const r=root.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}function castRay(){ray.setFromCamera({x:ptr.ndcX,y:ptr.ndcY},camera);const hits=ray.intersectObjects(hitMeshes,false);if(hits.length){rayBook=bookByHit(hits[0].object);const lp=rayBook.hit.worldToLocal(hits[0].point.clone());rayBook.hitEdge=clamp(lp.x/.9*.5+.5,0,1)}else rayBook=null}
+function localXY(e){const r=root.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}function castRay(){ray.setFromCamera({x:ptr.ndcX,y:ptr.ndcY},camera);const hits=ray.intersectObjects(hitMeshes,false);if(hits.length){let best=hits[0];if(hits.length>1){let bd=1e9;for(const h of hits){h.object.getWorldPosition(tmpV).project(camera);const d=(tmpV.x-ptr.ndcX)**2+(tmpV.y-ptr.ndcY)**2;if(d<bd){bd=d;best=h}}}rayBook=bookByHit(best.object);const lp=rayBook.hit.worldToLocal(best.point.clone());rayBook.hitEdge=clamp(lp.x/.9*.5+.5,0,1)}else rayBook=null}
 canvas.addEventListener('pointermove',e=>{if(ptr.id!==null&&e.pointerId!==ptr.id)return;const {x,y}=localXY(e),dx=(x-ptr.lastX)/dims.w,dy=(y-ptr.lastY)/dims.h;ptr.lastX=x;ptr.lastY=y;ptr.cx=x;ptr.cy=y;ptr.ndcX=x/dims.w*2-1;ptr.ndcY=-(y/dims.h)*2+1;ptr.type=e.pointerType||'mouse';ptr.seen=true;if(state.mode==='detail')leaves.push(dx,dy);if(ptr.down&&dragBook){ptr.moved+=Math.abs(dx*dims.w)+Math.abs(dy*dims.h);dragBook.springs.drag.t=clamp((ptr.downX-x)/dims.w*3.4,0,1)}if(ptr.down&&orbit.drag){orbit.dxAcc+=dx;orbit.dyAcc+=dy;ptr.moved+=Math.abs(dx*dims.w)+Math.abs(dy*dims.h)}});
 canvas.addEventListener('pointerdown',e=>{if(ptr.id!==null)return;root.focus({preventScroll:true});ptr.id=e.pointerId;const {x,y}=localXY(e);ptr.cx=x;ptr.cy=y;ptr.lastX=x;ptr.lastY=y;ptr.ndcX=x/dims.w*2-1;ptr.ndcY=-(y/dims.h)*2+1;ptr.type=e.pointerType||'mouse';ptr.seen=true;castRay();if(state.mode==='hero'&&rayBook){ptr.down=true;dragBook=rayBook;ptr.downX=x;ptr.downY=y;ptr.moved=0;ptr.t0=performance.now();canvas.setPointerCapture(e.pointerId)}else if(state.mode==='detail'&&rayBook===state.selected){ptr.down=true;orbit.drag=true;orbit.dxAcc=0;orbit.dyAcc=0;ptr.moved=0;ptr.t0=performance.now();canvas.setPointerCapture(e.pointerId)}else{state.pillLock=null;state.kbIndex=-1}});
 window.addEventListener('pointerup',e=>{if(ptr.id!==null&&e.pointerId!==ptr.id)return;ptr.id=null;orbit.drag=false;if(dragBook){const slop=isTouch()?26:14,limit=isTouch()?650:450,wasDrag=ptr.moved>slop;dragBook.springs.drag.t=0;if(!wasDrag&&state.mode==='hero'&&performance.now()-ptr.t0<limit)open(dragBook);dragBook=null}ptr.down=false;if(isTouch())rayBook=null});window.addEventListener('pointercancel',()=>{ptr.id=null;ptr.down=false;orbit.drag=false;if(dragBook){dragBook.springs.drag.t=0;dragBook=null}});
@@ -825,7 +814,7 @@ function tickBook(b, dt, t) {
             if (Math.abs(b.orbTarget - b.orbY) < 0.002 && Math.abs(b.orbYv) < 0.01) {
               b.orbY = b.orbTarget;
               b.orbYv = 0;
-              b.orbPhase = '(RM ? 0 : 1)';
+              b.orbPhase = 'idle';
             }
           }
         }
